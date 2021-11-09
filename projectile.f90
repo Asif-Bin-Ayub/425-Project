@@ -12,5 +12,5 @@ double precision :: t,tmax,dt,x,y,z,vx,vy,vz
 
 !Loop over
 
-
+print*, "I'm a projectile!"
 end program projectile
