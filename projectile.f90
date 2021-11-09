@@ -1,7 +1,8 @@
-program 
+program projectile
 implicit none 
 
 !Declaration
+double precision :: t,tmax,dt,x,y,z,vx,vy,vz
 
 !parameters:
 
@@ -12,4 +13,4 @@ implicit none
 !Loop over
 
 
-end program 
+end program projectile
