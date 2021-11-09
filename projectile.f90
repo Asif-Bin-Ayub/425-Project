@@ -8,7 +8,7 @@ double precision :: g,der_x,der_y,der_z
 !parameters:
 
 !Initializing:
-
+!sdsj
 !Storing results:
 
 !Loop over
