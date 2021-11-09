@@ -13,5 +13,5 @@ double precision :: g,der_x,der_y,der_z
 
 !Loop over
 
-
+print*, "I'm a projectile!"
 end program projectile
