@@ -1,5 +1,0 @@
-reset 
-set xrange [2 to 10]
-set yrange [2 to 10]
-
-plot "" every::i::i u 1:2 w lp lc 5 t ""
