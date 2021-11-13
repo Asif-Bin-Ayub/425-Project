@@ -11,6 +11,8 @@ double precision :: g,der_x,der_y,der_z
 !sdsj hehe
 !Storing results:
 
+!Kumail write something here.
+
 !Loop over
 
 print*, "Hello Asif"
