@@ -1,1 +1,0 @@
-Read the message that Asif's sent in the group.
