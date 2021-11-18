@@ -12,5 +12,5 @@
 ### Plots of Theta vs. Time:
 
 1. Kumail:
-![](../SimplePendulum/Thetavs.Time.png)
+![](../SimplePendulum/Plots/Thetavs.Time.png)
 
