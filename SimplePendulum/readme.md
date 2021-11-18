@@ -9,8 +9,7 @@
 4. Make sure that the pendulum is nonlinear (use sin(theta)).
 
 
-### Plots of Theta vs. Time:
-
-1. Kumail:
+### Plots:
+1. Kumail
 ![](../SimplePendulum/Plots/omega_theta.png)
 
