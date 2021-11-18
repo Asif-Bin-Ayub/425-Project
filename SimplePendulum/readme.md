@@ -7,3 +7,9 @@
 2. Use: dt=0.01, tmax=60 s, l=g=9.8 .
 3. Initial conditions: displacement=0.5 rad, angular velocity=0 rad/s
 4. Make sure that the pendulum is nonlinear (use sin(theta)).
+
+
+### Plots of Theta vs. Time:
+
+1. Kumail:
+![](../SimplePendulum/Thetavs.Time.png)
