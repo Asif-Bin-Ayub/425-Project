@@ -47,21 +47,13 @@ do while(t.le.tmax)
 	! theta = theta + der_theta*dt
 	
 	!x:
-	! x_k1 = l*sin(theta)
-	! x_k2 = l*sin(theta) + 0.5d0*x_k1
-	! x_k3 = l*sin(theta) + 0.5d0*x_k2
-	! x_k4 = l*sin(theta) + x_k3
-	! x = x + 1/6.0d0*dt*(x_k1+2*(x_k2+x_k3)+x_k4)
+	x=l*sin(theta)
 	
 	!y:
-	! y_k1 = -l*cos(theta)
-	! y_k2 = -l*cos(theta) - 0.5d0*y_k1
-	! y_k3 = -l*cos(theta) - 0.5d0*y_k2
-	! y_k4 = -l*cos(theta) - y_k3
-	! y = y + 1/6.0d0*dt*(y_k1+2*(y_k2+y_k3)+y_k4)
+	y=l*(1.0d0-cos(theta))
 	
 	t=t+dt
-	write(11,*) t,theta,omega!,x,y
+	write(11,*) t,theta,omega,x,y
 enddo
 
 !RK functions:
