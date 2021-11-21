@@ -6,17 +6,17 @@ implicit none
 	
 	!Variable Declarations
 		
-		!Constants
-		!g = accleration due to gravity (m/s^2), l = length of pendulum
-		double precision, parameter :: g = 9.8d0, l = 9.8d0, pi = acos(-1.00)
-		
-		!Parameters of motion
-		!theta = angular displacement (rad), omega = angular velocity (rad/s) 
-		!K = RK-4 derivative, ki = RK-4 coefficients
-		double precision :: theta, omega, t, dt
-		double precision :: k1_th, k2_th, k3_th, k4_th, K_th
-		double precision :: k1_w, k2_w, k3_w, k4_w, K_w
-		
+	!Constants
+	!g = accleration due to gravity (m/s^2), l = length of pendulum
+	double precision, parameter :: g = 9.8d0, l = 9.8d0, pi = acos(-1.00)
+	
+	!Parameters of motion
+	!theta = angular displacement (rad), omega = angular velocity (rad/s) 
+	!K = RK-4 derivative, ki = RK-4 coefficients
+	double precision :: theta, omega, x, y, t, dt
+	double precision :: k1_th, k2_th, k3_th, k4_th, K_th
+	double precision :: k1_w, k2_w, k3_w, k4_w, K_w
+	
 	!Initializations
 	dt = 1d-2 !sec
 	t = 0d0 !sec
@@ -24,31 +24,38 @@ implicit none
 	!Initial conditions
 	theta = 0.5d0 !rad
 	omega = 0d0 !rad/s
+	
+	!Initial Positions
+	x = l*sin(theta)
+	y = l*(1-cos(theta))
 		
 	open(11, file = "Pendulum_RK4.txt")
+	open(22, file = "Trajectory_RK4.txt")
 		
 	!RK-4 loop
 	do while (t <= 60d0)
 		
 		!Writing results into file
 		write(11,*) t, theta, omega
+		write(22,*) t, x, y
 		
-			!k1
-			k1_th = omega
-			k1_w = A(theta, 0d0)
 		
-			!k2
-			k2_th = omega + k1_w*(dt/2d0)
-			k2_w = A(theta, k1_th)
-			
-			!k3
-			k3_th = omega + k2_w*(dt/2d0)
-			k3_w = A(theta, k2_th)
-			
-			!k4
-			k4_th = omega + k3_w*dt
-			k4_w = A(theta, 2d0*k3_th) !Factor of 2 for dt in k4
-			
+		!k1
+		k1_th = omega
+		k1_w = A(theta, 0d0)
+		
+		!k2
+		k2_th = omega + k1_w*(dt/2d0)
+		k2_w = A(theta, k1_th)
+		
+		!k3
+		k3_th = omega + k2_w*(dt/2d0)
+		k3_w = A(theta, k2_th)
+		
+		!k4
+		k4_th = omega + k3_w*dt
+		k4_w = A(theta, 2d0*k3_th) !Factor of 2 for dt in k4
+		
 		!Derivatives
 		K_th = K(k1_th, k2_th, k3_th, k4_th)
 		K_w =  K(k1_w, k2_w, k3_w, k4_w)
@@ -56,11 +63,17 @@ implicit none
 		!Updating parameters
 		theta = theta + K_th*dt
 		omega = omega + K_w*dt
+		
+		!Updating position
+		x = l*sin(theta)
+		y = l*(1-cos(theta))
+		
 		t = t + dt
 		
 		end do
 	
 	close(11)
+	close(22)
 	
 	contains
 	
