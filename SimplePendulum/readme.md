@@ -12,4 +12,4 @@
 ### Plots:
 1. Kumail
 ![](../SimplePendulum/Plots/omega_theta.png)
-
+![](../SimplePendulum/Plots/Trajectory.png)

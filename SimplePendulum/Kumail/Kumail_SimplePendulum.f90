@@ -2,9 +2,9 @@ program SimplePendulum
 implicit none 
 
 !Declaration
-double precision :: t,tmax,dt,theta,omega,domega,l,g,pi
+double precision :: x,y,t,tmax,dt,theta,omega,domega,l,g,pi
 double precision :: th_k1,th_k2,th_k3,th_k4,w_k1,w_k2,w_k3,w_k4
-double precision :: x,y,x_k1,x_k2,x_k3,x_k4,y_k1,y_k2,y_k3,y_k4
+double precision :: der_theta,der_omega
 
 !parameters:
 pi=acos(-1.0d0)
@@ -33,8 +33,7 @@ do while(t.le.tmax)
 	w_k4= -g/l*sin(theta) - w_k3
 	omega = omega + 1/6.0d0*dt*(w_k1+2*(w_k2+w_k3)+w_k4)
 	
-	! der_omega = der_omega(w_k1,w_k2,w_k3,w_k4)
-	! omega = omega + der_omega*dt
+	! omega = omega + der_omega(w_k1,w_k2,w_k3,w_k4)*dt
 	
 	!Theta:
 	th_k1= omega 
@@ -43,46 +42,37 @@ do while(t.le.tmax)
 	th_k4= omega + th_k3
 	theta = theta + 1/6.0d0*dt*(th_k1+2*(th_k2+th_k3)+th_k4)
 	
-	! der_theta = der_theta(th_k1,th_k2,th_k3,th_k4)
-	! theta = theta + der_theta*dt
+	! theta = theta + der_theta(th_k1,th_k2,th_k3,th_k4)*dt
 	
 	!x:
-	! x_k1 = l*sin(theta)
-	! x_k2 = l*sin(theta) + 0.5d0*x_k1
-	! x_k3 = l*sin(theta) + 0.5d0*x_k2
-	! x_k4 = l*sin(theta) + x_k3
-	! x = x + 1/6.0d0*dt*(x_k1+2*(x_k2+x_k3)+x_k4)
+	x=l*sin(theta)
 	
 	!y:
-	! y_k1 = -l*cos(theta)
-	! y_k2 = -l*cos(theta) - 0.5d0*y_k1
-	! y_k3 = -l*cos(theta) - 0.5d0*y_k2
-	! y_k4 = -l*cos(theta) - y_k3
-	! y = y + 1/6.0d0*dt*(y_k1+2*(y_k2+y_k3)+y_k4)
+	y=l*(1.0d0-cos(theta))
 	
 	t=t+dt
-	write(11,*) t,theta,omega!,x,y
+	write(11,*) t,theta,omega,x,y
 enddo
 
-!RK functions:
-! function der_theta(th_k1,th_k2,th_k3,th_k4)
-	! double precision :: th_k1,th_k2,th_k3,th_k4
-	! double precision :: der_theta
-	! th_k1= omega 
-	! th_k2= omega + 0.5d0*th_k1
-	! th_k3= omega + 0.5d0*th_k2
-	! th_k4= omega + th_k3
-	! der_theta = (th_k1+2.0d0*(th_k2+th_k3)+th_k4)/6.0d0
-! end function der_theta
-
-! function der_omega(w_k1,w_k2,w_k3,w_k4)
-	! double precision :: w_k1,w_k2,w_k3,w_k4
-	! double precision :: der_omega
-	! w_k1= -g/l*sin(theta)
-	! w_k2= -g/l*sin(theta) - 0.5d0*w_k1
-	! w_k3= -g/l*sin(theta) - 0.5d0*w_k2
-	! w_k4= -g/l*sin(theta) - w_k3
-	! der_omega = (w_k1+2.0d0*(w_k2+w_k3)+w_k4)/6.0d0
-! end function der_omega
-
 end program SimplePendulum
+
+!RK functions:
+function der_theta(th_k1,th_k2,th_k3,th_k4)
+	double precision :: th_k1,th_k2,th_k3,th_k4
+	double precision :: der_theta
+	th_k1= omega 
+	th_k2= omega + 0.5d0*th_k1
+	th_k3= omega + 0.5d0*th_k2
+	th_k4= omega + th_k3
+	der_theta = (th_k1+2.0d0*(th_k2+th_k3)+th_k4)/6.0d0
+end function der_theta
+
+function der_omega(w_k1,w_k2,w_k3,w_k4)
+	double precision :: w_k1,w_k2,w_k3,w_k4
+	double precision :: der_omega
+	w_k1= -g/l*sin(theta)
+	w_k2= -g/l*sin(theta) - 0.5d0*w_k1
+	w_k3= -g/l*sin(theta) - 0.5d0*w_k2
+	w_k4= -g/l*sin(theta) - w_k3
+	der_omega = (w_k1+2.0d0*(w_k2+w_k3)+w_k4)/6.0d0
+end function der_omega
