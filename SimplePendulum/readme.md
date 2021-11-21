@@ -10,6 +10,4 @@
 
 
 ### Plots:
-1. Kumail
-![](../SimplePendulum/Plots/omega_theta.png)
-![](../SimplePendulum/Plots/Trajectory.png)
+![](../SimplePendulum/Plots/Kumail_Omega,Theta.png)
