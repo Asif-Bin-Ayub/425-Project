@@ -13,3 +13,6 @@
 ![](../SimplePendulum/Plots/Kumail_Omega,Theta.png)
 
 ![](../SimplePendulum/Plots/Asif_Omega,Theta.png)
+
+
+![](../SimplePendulum/Plots/Ali_Omega,Theta.png)
