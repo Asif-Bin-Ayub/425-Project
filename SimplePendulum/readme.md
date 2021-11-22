@@ -11,3 +11,5 @@
 
 ### Plots:
 ![](../SimplePendulum/Plots/Kumail_Omega,Theta.png)
+
+![](../SimplePendulum/Plots/Asif_Omega,Theta.png)
