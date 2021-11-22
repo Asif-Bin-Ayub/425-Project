@@ -18,6 +18,8 @@ program Test
         omega=0d0
 
     open (1,file="Ali_Pendulum_RK4.txt")
+    
+    write(1,*) t, theta, omega !Prints initial condition
 
     RK4_loop : do while (t<=tmax)
 
