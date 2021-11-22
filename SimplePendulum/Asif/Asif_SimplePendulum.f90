@@ -41,24 +41,20 @@ implicit none
 		
 		! k1
 		k1_th = omega
-		! k1_w = A(theta, 0d0)
-		k1_w = -(g/l)*sin(theta)
-		
+		k1_w = A(theta, 0d0)
+
 		! k2
 		k2_th = omega + k1_w*(dt/2d0)
-		! k2_w = A(theta, 0.5d0*k1_th) ! Factor of 1/2 for k2 & k3 coefficients
-		k2_w = -(g/l)*sin(theta + k1_th*(dt/2d0))
-		
+		k2_w = A(theta, 0.5d0*k1_th) ! Factor of 1/2 for k2 & k3 coefficients
+
 		! k3
 		k3_th = omega + k2_w*(dt/2d0)
-		! k3_w = A(theta, 0.5d0*k2_th) ! Factor of 1/2 for k2 & k3 coefficients
-		k3_w = -(g/l)*sin(theta + k2_th*(dt/2d0))
+		k3_w = A(theta, 0.5d0*k2_th) ! Factor of 1/2 for k2 & k3 coefficients
 		
 		! k4
 		k4_th = omega + k3_w*dt
-		! k4_w = A(theta, k3_th)
-		k4_w = -(g/l)*sin(theta + k3_th*dt)
-		
+		k4_w = A(theta, k3_th)
+
 		! Derivatives
 		K_th = K(k1_th, k2_th, k3_th, k4_th)
 		K_w =  K(k1_w, k2_w, k3_w, k4_w)
@@ -92,9 +88,7 @@ implicit none
 		
 		dt = 1d-2 !sec
 		
-		theta = theta + k*dt
-		
-		A = -(g/l)*sin(theta)
+		A = -(g/l)*sin(theta + k*dt)
 
 	end function A
 	
