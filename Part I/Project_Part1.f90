@@ -19,12 +19,12 @@ theta=0.5d0 !rad
 omega=0.0d0 !rad/s
 
 !Path1:-------------
-! x=l*sin(theta)/(1.0d0+cos(theta)) !m
-! z=-l*cos(theta)/(1.0d0+cos(theta)) !m
+x=l*sin(theta)/(1.0d0+cos(theta)) !m
+z=-l*cos(theta)/(1.0d0+cos(theta)) !m
 
 !Path2:-------------
-x=l*(theta+sin(theta)) !m 
-z=-l*(1+cos(theta))+2.0d0*l !m 
+! x=l*(theta+sin(theta)) !m 
+! z=-l*(1+cos(theta))+2.0d0*l !m 
 
 !Storing results:======================
 !Path1 (Parabola):---------------------
@@ -53,15 +53,15 @@ do while(t.le.tmax)
 	
 	!K2
 	th_k2= AV(theta + 0.5d0*th_k1*dt,omega + 0.5d0*w_k1*dt)
-	w_k2= AA(theta + 0.5d0*th_k1*dt,omega + 0.5d0*w_k1*dt,t)
+	w_k2= AA(theta + 0.5d0*th_k1*dt,omega + 0.5d0*w_k1*dt,t + 0.5d0*dt)
 	
 	!K3
 	th_k3= AV(theta + 0.5d0*th_k2*dt,omega + 0.5d0*w_k2*dt)
-	w_k3= AA(theta + 0.5d0*th_k2*dt,omega + 0.5d0*w_k2*dt,t)
+	w_k3= AA(theta + 0.5d0*th_k2*dt,omega + 0.5d0*w_k2*dt,t + 0.5d0*dt)
 	
 	!K4
 	th_k4= AV(theta + th_k3*dt,omega + w_k3*dt)
-	w_k4= AA(theta + th_k3*dt,omega + w_k3*dt,t)
+	w_k4= AA(theta + th_k3*dt,omega + w_k3*dt,t + dt)
 	
 	!Rk4 Derivatives 
 	der_theta=K(th_k1,th_k2,th_k3,th_k4)
@@ -72,8 +72,8 @@ do while(t.le.tmax)
 	
 	!Trajectory:
 	!Path1:------------
-		x=l*sin(theta)/(1.0d0+cos(theta))
 		z=-l*cos(theta)/(1.0d0+cos(theta))
+		x=l*sin(theta)/(1.0d0+cos(theta))
 	!Path2:------------
 		! x=l*(theta+sin(theta))
 		! z=-l*(1+cos(theta))+2.0d0*l
@@ -112,6 +112,9 @@ end program Preject_Part1
 		q=0.3d0 ! Damping coefficient
 		Fd=12d0 ! Driving amplitude
 		omega_d=2*acos(-1.0)/1d0 ! Driving frequency
+		! q=0
+		! Fd=0
+		! omega_d=0
 		
 		! Notes on damping coefficient q (with Fd=0)
 		! Path 1:
