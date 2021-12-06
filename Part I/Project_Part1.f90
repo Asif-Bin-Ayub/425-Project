@@ -34,7 +34,7 @@ z=-l*(1+cos(theta))+2.0d0*l !m
 	!Equilibrium Point(s):
 	! open(unit=11,file='Equilibrium.txt')
 	
-!Path2 (Unknown):----------------------
+!Path2 (Cycloid):----------------------
 	!Trajectory:
 	open(unit=12,file='Trajectory_Path2.txt')
 	
