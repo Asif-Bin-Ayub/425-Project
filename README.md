@@ -8,7 +8,7 @@ Type down the graphs or animations you think we should do in the report.
 3. Period vs oscillations amplitude plot
 4. Shape of C2 (Cycloid)
 5. Theta vs t plot showing underdamped/overdamped behaviours
-6. Amplitude vs driving frequence for resonance
+6. Amplitude vs driving frequencies for resonance
 7. Fd vs amplitude to investigate chaos
 8. (Poincaré sections & Bifurcation diagrams, if there is chaos)
 
