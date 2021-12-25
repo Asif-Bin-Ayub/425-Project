@@ -12,14 +12,14 @@ double precision :: K,AV1,AA1,AV2,AA2
 pi=acos(-1.0d0)
 l=9.8d0 !m
 dt=0.01d0
-tmax=60.0d0 !s
+tmax= 300.0d0 !s
 
 !Initializing:=========================
 t=0.0d0 !s
-theta=1.0d0 !rad
+theta=1.5d0 !rad
 phi=0.5d0 !rad
 omega=0.0d0 !rad/s
-alpha=0.4d0 !rad/s
+alpha= sqrt(1/cos(theta)) !rad/s
 
 x=l*sin(theta)*cos(phi) !m
 y=l*sin(theta)*sin(phi) !m
@@ -33,33 +33,31 @@ z=-l*cos(theta) !m
 do while(t.le.tmax)
 	
 	!Writing Results:
-	!Path1:------------
-		write(10,*) t,x,y,z!,theta,omega,phi,alpha
-
+	write(10,*) t,x,y,z!,theta,omega,phi,alpha
 	
 	!K1
-	th_k(1) = AV1(theta,omega,phi,alpha) 
-	w_k(1) = AA1(theta,omega,phi,alpha)
+	th_k(1)  = AV1(theta,omega,phi,alpha) 
+	w_k(1)   = AA1(theta,omega,phi,alpha)
 	phi_k(1) = AV2(theta,omega,phi,alpha)
-	a_k(1) = AA2(theta,omega,phi,alpha)
+	a_k(1)   = AA2(theta,omega,phi,alpha)
 	
 	!K2
-	th_k(2) = AV1(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt) 
-	w_k(2) = AA1(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt)
+	th_k(2)  = AV1(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt) 
+	w_k(2)   = AA1(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt)
 	phi_k(2) = AV2(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt)
-	a_k(2) = AA2(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt)
+	a_k(2)   = AA2(theta+0.5d0*th_k(1)*dt,omega+0.5d0*w_k(1)*dt,phi+0.5d0*phi_k(1)*dt,alpha+0.5d0*a_k(1)*dt)
 	
 	!K3
-	th_k(3) = AV1(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt) 
-	w_k(3) = AA1(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt)
+	th_k(3)  = AV1(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt) 
+	w_k(3)   = AA1(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt)
 	phi_k(3) = AV2(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt)
-	a_k(3) = AA2(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt)
+	a_k(3)   = AA2(theta+0.5d0*th_k(2)*dt,omega+0.5d0*w_k(2)*dt,phi+0.5d0*phi_k(2)*dt,alpha+0.5d0*a_k(2)*dt)
 	
 	!K4
-	th_k(4) = AV1(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt) 
-	w_k(4) = AA1(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt)
+	th_k(4)  = AV1(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt) 
+	w_k(4)   = AA1(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt)
 	phi_k(4) = AV2(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt)
-	a_k(4) = AA2(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt)
+	a_k(4)   = AA2(theta+th_k(3)*dt,omega+w_k(3)*dt,phi+phi_k(3)*dt,alpha+a_k(3)*dt)
 	
 	!Rk4 Derivatives 
 	der_theta=K(th_k(1:4))
@@ -70,7 +68,7 @@ do while(t.le.tmax)
 	
 	theta = theta + der_theta*dt
 	omega = omega + der_omega*dt
-	phi = phi + der_phi*dt
+	phi   = phi   + der_phi*dt
 	alpha = alpha + der_alpha*dt
 	
 	!Trajectory:
@@ -100,11 +98,12 @@ end program Preject_Part2
 	
 	! Angular Acceleration (AA1): For "Theta"
 	function AA1(theta,omega,phi,alpha)
-		double precision :: g,l,theta,omega,phi,alpha
+		double precision :: q,g,l,theta,omega,phi,alpha
 		double precision :: AA1
 		g=9.8d0
 		l=9.8d0
-		AA1 = alpha**2*sin(theta)*cos(theta)-g/l*sin(theta)
+		q=0.05d0
+		AA1 = alpha**2*sin(theta)*cos(theta)-g/l*sin(theta)-q*omega
 	end function AA1
 		
 	! Angular Velocity (AV1): For "Theta"
@@ -116,9 +115,10 @@ end program Preject_Part2
 
 	! Angular Acceleration (AA2): For "Phi"
 	function AA2(theta,omega,phi,alpha)
-		double precision :: theta,omega,phi,alpha
+		double precision :: q,theta,omega,phi,alpha
 		double precision :: AA2
-		AA2 = -2.0d0*omega*alpha*sin(theta)/cos(theta)
+		q=0.05d0
+		AA2 = -2.0d0*omega*alpha*sin(theta)/cos(theta)-q*alpha
 	end function AA2
 		
 	! Angular Velocity (AV2): For "Phi"
