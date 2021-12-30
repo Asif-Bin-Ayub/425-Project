@@ -1,4 +1,5 @@
 reset
+# l=1 and theta0=45deg
 
 set terminal gif animate delay 1
 set output "Path1.gif"
