@@ -15,7 +15,7 @@ tmax=60.0d0 !s
 
 !Initializing:=========================
 t=0.0d0 !s
-theta=0.5d0 !rad
+theta=0.56d0 !rad
 omega=0.0d0 !rad/s
 
 !Path1:-------------
@@ -76,7 +76,7 @@ do while(t.le.tmax)
 		x=l*sin(theta)/(1.0d0+cos(theta))
 	!Path2:------------
 		! x=l*(theta+sin(theta))
-		! z=-l*(1+cos(theta))+2.0d0*l
+		! z=l*(1-cos(theta))
 	
 	!Time Update:
 	t=t+dt
@@ -110,11 +110,9 @@ end program Preject_Part1
 		l=9.8d0
 	
 		q=0.3d0 ! Damping coefficient
-		Fd=12d0 ! Driving amplitude
-		omega_d=2*acos(-1.0)/1d0 ! Driving frequency
-		! q=0
-		! Fd=0
-		! omega_d=0
+		Fd=2*acos(-1.0) ! Driving amplitude
+		omega_d=4.5d0 ! Driving frequency
+
 		
 		! Notes on damping coefficient q (with Fd=0)
 		! Path 1:
