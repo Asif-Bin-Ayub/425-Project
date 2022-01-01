@@ -213,19 +213,20 @@ implicit none
 			! 	needs to be determined by trial and error.
 			!			A better approach would be to do a discrete time Fourier
 			!	transform, and see which frequencies dominate.
-			Period: if(check(1) .eqv. .FALSE.) then
-				!Path 1
-				if(theta(1).ge.0d0 .and. abs(omega_0(1)-omega(1)).le.2d-3) then
-					T_0(1)=t
-					check(1) = .TRUE.
-				end if
-			else if(check(2) .eqv. .FALSE.) then
-				!Path 2
-				if(theta(2).ge.0d0 .and. abs(omega_0(2)-omega(2)).le.6d-3) then
-					T_0(2)=t
-					check(2) = .TRUE.
-				end if		
-			end if Period
+			
+			! Period: if(check(1) .eqv. .FALSE.) then
+				! !Path 1
+				! if(theta(1).ge.0d0 .and. abs(omega_0(1)-omega(1)).le.2d-3) then
+					! T_0(1)=t
+					! check(1) = .TRUE.
+				! end if
+			! else if(check(2) .eqv. .FALSE.) then
+				! !Path 2
+				! if(theta(2).ge.0d0 .and. abs(omega_0(2)-omega(2)).le.6d-3) then
+					! T_0(2)=t
+					! check(2) = .TRUE.
+				! end if		
+			! end if Period
 			
 			
 			! MEASURING TOTAL ENERGIES AT A GIVEN TIME
@@ -241,15 +242,15 @@ implicit none
 				! write(42,*) t,E(2)
 			
 			! MEASURING OSCILLATION AMPLITUDES
-			Amplitude: if (t .ge. 45d0) then
-				if (A(1).le.theta(1)) then
-					A(1) = theta(1)
-				end if
+			! Amplitude: if (t .ge. 45d0) then
+				! if (A(1).le.theta(1)) then
+					! A(1) = theta(1)
+				! end if
 				
-				if (A(2).le.theta(2)) then
-					A(2) = theta(2)
-				end if	
-			end if Amplitude
+				! if (A(2).le.theta(2)) then
+					! A(2) = theta(2)
+				! end if	
+			! end if Amplitude
 			
 			!Trajectory:
 			!Path1:------------
