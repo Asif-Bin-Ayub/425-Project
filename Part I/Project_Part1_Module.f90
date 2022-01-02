@@ -103,7 +103,7 @@ implicit none
 		!Trajectory:
 		open(unit=10,file='Trajectory_Path1.txt')
 		!Equilibrium Point(s):
-		open(unit=11,file='Equilibrium_Path1.txt')
+		! open(unit=11,file='Equilibrium_Path1.txt')
 		! !Period data
 		! open(unit=20,file='Period_Path1.txt')
 		! !For resonance, amplitude
@@ -114,7 +114,7 @@ implicit none
 		!Trajectory:
 		open(unit=12,file='Trajectory_Path2.txt')
 		!Equilibrium Point(s):
-		open(unit=13,file='Equilibrium_Path2.txt')
+		! open(unit=13,file='Equilibrium_Path2.txt')
 		! !Period data
 		! open(unit=21,file='Period_Path2.txt')
 		! !For resonance, amplitude
@@ -124,7 +124,7 @@ implicit none
 	
 	!Initializing:=========================
 	omega_0(1:2)=0.0d0 !rad/s
-	theta_0(1:2)=0.56d0 !rad
+	theta_0(1:2)=0.0d0 !rad
 	l=9.8d0 !metres
 	
 	
@@ -142,8 +142,8 @@ implicit none
 			! less than 0.5 --> Sizeable oscillations
 		
 	
-	Fd=0.0d0*pi !Driving amplitude
-	omega_d=0.01*pi !Driving frequency
+	Fd=1.0d0*pi !Driving amplitude
+	omega_d=1*pi !Driving frequency
 	q=0.0d0 !Damping coefficient
 	
 	! INSTRUCTIONS FOR THE OUTER LOOP:
@@ -201,11 +201,11 @@ implicit none
 			
 			! EQUILIBRIUM POINT(S)
 			! DO NOT ACTIVATE THIS BLOCK WHEN OUTER LOOP IS ON
-			if (abs(der_omega(1)) .le. 5d-4) then
-				write(11,*) x(1),z(1),t ! For path 1
-			else if (abs(der_omega(2)) .le. 3d-4) then
-				write(13,*) x(2),z(2),t ! For path 2
-			end if
+			! if (abs(der_omega(1)) .le. 5d-4) then
+				! write(11,*) x(1),z(1),t ! For path 1
+			! else if (abs(der_omega(2)) .le. 3d-4) then
+				! write(13,*) x(2),z(2),t ! For path 2
+			! end if
 	
 			! MEASURING PERIOD (ONLY for undamped, undriven) - UNRELIABLE
 			! 	This results in a lot of noise, which needed to be fixed manually.
