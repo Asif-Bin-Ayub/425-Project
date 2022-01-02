@@ -20,9 +20,15 @@ Type down the graphs or animations you think we should do in the report.
 
 ## part 2
 ### Graphs
-1.
-2.
+1. Circular path / or semi-circular path (the same as simple pendulum)
+2. 3 closed paths, prefer to be different (Choose values from Asif)
+3. 3 Lissajous-like figures, not needed to be closed, prefered to be different (Choose from your own or Asif)
+4. 3 different damping paths, different values for q.
+5. Conservation of energy 
+6. Conservation of angular momentum 
 
 ### Animations
-1.
-2.
+1. Circular motion
+2. Drawing a closed path
+3. An open (not closed) lissajous-like figure
+4. Implemented version of constrained motion (Simple harmonic motion in the hemisphere and projectile motion outside it)

@@ -103,7 +103,11 @@ implicit none
 		!Trajectory:
 		open(unit=10,file='Trajectory_Path1.txt')
 		!Equilibrium Point(s):
+<<<<<<< HEAD
 		! open(unit=11,file='Equilibrium_Path1.txt')
+=======
+		open(unit=11,file='Equilibrium_Path1.txt')
+>>>>>>> f139a55f6a0b293ae7370b891bece25d807850c0
 		! !Period data
 		! open(unit=20,file='Period_Path1.txt')
 		! !For resonance, amplitude
@@ -114,7 +118,11 @@ implicit none
 		!Trajectory:
 		open(unit=12,file='Trajectory_Path2.txt')
 		!Equilibrium Point(s):
+<<<<<<< HEAD
 		! open(unit=13,file='Equilibrium_Path2.txt')
+=======
+		open(unit=13,file='Equilibrium_Path2.txt')
+>>>>>>> f139a55f6a0b293ae7370b891bece25d807850c0
 		! !Period data
 		! open(unit=21,file='Period_Path2.txt')
 		! !For resonance, amplitude
@@ -124,6 +132,7 @@ implicit none
 	
 	!Initializing:=========================
 	omega_0(1:2)=0.0d0 !rad/s
+<<<<<<< HEAD
 	theta_0(1:2)=0.0d0 !rad
 	l=9.8d0 !metres
 	
@@ -207,6 +216,91 @@ implicit none
 				! write(13,*) x(2),z(2),t ! For path 2
 			! end if
 	
+=======
+	theta_0(1:2)=0.56d0 !rad
+	l=9.8d0 !metres
+	
+	
+	! Take Fd=0 & q=0 UNLESS you want to simulate damping and driving forces
+	
+	! Notes on damping coefficient q (for Fd=0)
+	! [This is just a qualitative estimate]
+		! Path 1:
+			! 2 or more --> Overdamped (2 is not the critical damping coefficient, just roughly)
+			! less than 2 --> Underdamped
+			! less than 1 --> Sizeable oscillations
+		! Path 2:
+			! 2 or more --> Overdamped (2 is not the critical damping coefficient, just roughly)
+			! less than 2 --> Underdamped
+			! less than 0.5 --> Sizeable oscillations
+		
+	
+	Fd=0.0d0*pi !Driving amplitude
+	omega_d=0.01*pi !Driving frequency
+	q=0.0d0 !Damping coefficient
+	
+	! INSTRUCTIONS FOR THE OUTER LOOP:
+	!
+	! 	Only "activate" (or un-comment) one outer loop AT A TIME. Each loop is
+	!	used for a specific task. Here's a brief summary:
+	!		+	PeriodvsTheta0 --> Used to compare period with initial amplitude.	
+	!		+	PeriodvsL --> Used to compare period with length parameter l.
+	!		+ 	AmplitudevsFd --> Used to compare amplitude with Driving amplitude
+	!		+	AmplitudevsWd --> Used to compare amplitude with Driving angular 
+	!							  frequency
+	!	In each case, activate the relavant block of code in the time loop, in 
+	!	addition to activating the outer loops. The titles in each block are self-
+	!	explanatory.
+	
+	!##################  OUTER LOOP  #########################
+	
+	! PeriodvsTheta0: do while (theta_0(1) .le. 0.99d0*pi)
+	! PeriodvsL: do while (l .le. 15d0)
+	! AmplitudevsFd: do while (Fd <= 10d0)
+	! AmplitudevsWd: do while (omega_d <= 3*pi)
+		
+		!Initializing:=========================
+		t=0.0d0 !s
+		
+		theta(1:2) = theta_0(1:2)
+		omega(1:2) = omega_0(1:2)
+		
+		!For period calculation
+		check(1:2) = .FALSE.
+		T_0(1:2) = 0d0
+		
+		!Resetting amplitudes
+		A(1:2) = 0d0
+	
+		!Path1:-------------
+		x(1)=l*sin(theta(1))/(1.0d0+cos(theta(1))) !m
+		z(1)=-l*cos(theta(1))/(1.0d0+cos(theta(1))) !m
+	
+		!Path2:-------------
+		x(2)=l*(theta(2)+sin(theta(2)))
+		z(2)=-l*(1-cos(theta(2)))
+				
+		!Time Loop:============================ 
+		do while(t.le.tmax)
+			! Writing trajectories and paths:
+			! DO NOT ACTIVATE THIS BLOCK WHEN OUTER LOOP IS ON
+			! Path1:------------
+				write(10,*) t,theta(1),omega(1),x(1),z(1)
+			! Path2:----------------
+				write(12,*) t,theta(2),omega(2),x(2),z(2)
+			
+			!RK4 Step
+			call simulation
+			
+			! EQUILIBRIUM POINT(S)
+			! DO NOT ACTIVATE THIS BLOCK WHEN OUTER LOOP IS ON
+			if (abs(der_omega(1)) .le. 5d-4) then
+				write(11,*) x(1),z(1),t ! For path 1
+			else if (abs(der_omega(2)) .le. 3d-4) then
+				write(13,*) x(2),z(2),t ! For path 2
+			end if
+	
+>>>>>>> f139a55f6a0b293ae7370b891bece25d807850c0
 			! MEASURING PERIOD (ONLY for undamped, undriven) - UNRELIABLE
 			! 	This results in a lot of noise, which needed to be fixed manually.
 			! 	Varying the tolerance for omega does reduce the noise, but this 
