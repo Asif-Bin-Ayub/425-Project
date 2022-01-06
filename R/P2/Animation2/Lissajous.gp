@@ -39,8 +39,8 @@ set zrange [-10:10]
 
 do for [i = 0:6001:25]{
 
-    splot "LAS1.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'dark-yellow' title "theta=pi/4, phi=pi/3, omega=0.1, alpha=theta",\
-    "" using 2:3:4 every::0::i with lines lc 'dark-yellow' title "",\
+    splot "LAS1.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc '#BC000E' title "theta=pi/4, phi=pi/3, omega=0.1, alpha=theta",\
+    "" using 2:3:4 every::0::i with lines lc '#BC000E' title "",\
     "LAS2.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'steelblue' title "theta=pi/3, phi=pi/2, omega=0, alpha=0.5theta",\
     "" using 2:3:4 every::0::i with lines lc 'steelblue' title "",\
     "LAS3.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'dark-green' title "theta=pi/5, phi=pi/3, omega=0, alpha=0.25theta",\
