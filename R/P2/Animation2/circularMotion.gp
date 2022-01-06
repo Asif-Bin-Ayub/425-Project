@@ -6,10 +6,12 @@ reset
 # omega = 0.0d0 
 # alpha = sqrt(1/cos(theta)) 
 
+reset
+
 # set terminal qt
-set terminal gif animate delay 1 size 1920, 1080 
-set output "Circule.gif"
-set title "Circular Path l=9.8"
+set terminal gif animate delay 1 size 1080, 1080 
+set output "CircularPath.gif"
+set title "Circular Path l=9.8 [Simple Pendulum]"
 
 set view equal
 
@@ -26,3 +28,5 @@ do for [i = 0:6001:25]{
     "" using 2:3:4 every::0::i with lines lc 'black' title ""
 
 }
+
+set output
