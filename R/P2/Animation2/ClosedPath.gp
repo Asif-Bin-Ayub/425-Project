@@ -10,8 +10,8 @@ reset
 
 # set terminal qt
 set terminal gif animate delay 1 size 1080, 1080 
-set output "ClosedPath3.gif"
-set title "Closed Path: Lissajous-like"
+set output "ClosedPath1.gif"
+set title "Closed Circular Path"
 
 set view equal
 
@@ -24,8 +24,8 @@ set zrange [-10:10]
 
 do for [i = 0:6001:25]{
 
-    splot "trajectory.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 2 title "",\
-    "" using 2:3:4 every::0::i with lines lc 2 title ""
+    splot "trajectory.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 7 title "",\
+    "" using 2:3:4 every::0::i with lines lc 7 title "θ=16.2⁰, φ=16.2⁰, θ'=3rad/s, φ'=0⁰/s"
 
 }
 
