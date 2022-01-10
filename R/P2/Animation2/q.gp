@@ -33,11 +33,11 @@ set zrange [-10:10]
 
 do for [i = 0:6001:25]{
 
-    splot "q025.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc '#BC000E' title "q=0.25",\
+    splot "q005.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc '#BC000E' title "q=0.05",\
     "" using 2:3:4 every::0::i with lines lc '#BC000E' title "",\
-    "q05.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'steelblue' title "q=0.5",\
+    "q0075.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'steelblue' title "q=0.075",\
     "" using 2:3:4 every::0::i with lines lc 'steelblue' title "",\
-    "q1.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'dark-green' title "q=1",\
+    "q01.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'dark-green' title "q=0.1",\
     "" using 2:3:4 every::0::i with lines lc 'dark-green' title "",\
     "q0.txt" using 2:3:4 every::i::i with points ps 5 pt 7 lc 'black' title "q=0",\
     "" using 2:3:4 every::0::i with lines lc 'black' title ""
