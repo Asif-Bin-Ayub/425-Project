@@ -1,3 +1,5 @@
+# Here are some values of theta, omega, phi and alpha that gives some lissajous-like figures
+
 #Brief Description
 theta			phi			omega			alpha			
 
@@ -63,5 +65,3 @@ theta			phi			omega			alpha
 
 ##Many petals, a hole in the centre (Bowl-shaped, Closed)
 49 deg			0 deg		2.45 deg/s		122.5 deg/s
-
-
