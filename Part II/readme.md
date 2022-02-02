@@ -2,7 +2,7 @@
 
 Brief Description
 θ   ω   φ   α			
-h&emps;h
+h &emps; h
 ### Jaw-like seesaw pattern (Not closed)
 48 deg			0			1.44 deg/s		129.6 deg/s
 
