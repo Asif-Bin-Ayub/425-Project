@@ -1,8 +1,8 @@
-# Table of graphs & animation:
-Type down the graphs or animations you think we should do in the report. 
+# Table of plots & animations:
+Type down the plots or animations you think we should do in the report. 
 
 ## Part 1
-### Graphs
+### Plots
 1. Phase space plots showing oscillatory motion
 2. Period vs l plot
 3. Period vs oscillations amplitude plot
@@ -19,7 +19,7 @@ Type down the graphs or animations you think we should do in the report.
 4. (Chaotic motion, if it exists)
 
 ## part 2
-### Graphs
+### Plots
 1. Circular path / or semi-circular path (the same as simple pendulum)
 2. 3 closed paths, prefer to be different (Choose values from Asif)
 3. 3 Lissajous-like figures, not needed to be closed, prefered to be different (Choose from your own or Asif)
