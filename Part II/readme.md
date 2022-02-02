@@ -1,6 +1,6 @@
 # Here are some values of θ, ω, φ and α that gives some lissajous-like figures
 
-Brief Description (See ' Lissajous_ICs.txt')
+Brief Description
 
 θ            ω            φ            α	
 
